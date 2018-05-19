@@ -24,7 +24,7 @@ protected:
 	virtual void BeginPlay() override;
 
 	/* Current component's health */
-	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "HealthComponent")
+	UPROPERTY(Replicated, EditDefaultsOnly, BlueprintReadOnly, Category = "HealthComponent")
 	float Health;
 
 	/* Default health at the beginning of component's life */
