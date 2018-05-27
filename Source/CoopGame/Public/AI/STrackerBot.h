@@ -81,7 +81,23 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
 	USoundCue* ExplodeSound;
 
-public:	
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	float NearbyBotsRadius;
+
+	// The maximum amount of power level of the bot
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	int32 MaxPowerLevel;
+
+	UPROPERTY(EditDefaultsOnly, Category = "TrackerBot")
+	FName MatInstPowerLevelParam;
+
+	// The power boost of the bot, affects damaged caused to enemies and color of the bot
+	float PowerLevel;
+
+	// Find nearby bots and grow in 'power level' based on the amount
+	void OnCheckNearbyBots();
+
+public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
