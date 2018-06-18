@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "SPowerUpActor.h"
+#include "Net/UnrealNetwork.h"
 
 
 // Sets default values
@@ -28,14 +29,7 @@ void ASPowerUpActor::ActivatePowerUp()
 
 void ASPowerUpActor::OnRep_PowerUpActive()
 {
-	if (bIsPowerUpActive)
-	{
-
-	}
-	else
-	{
-
-	}
+	OnPowerUpStateChanged(bIsPowerUpActive);
 }
 
 void ASPowerUpActor::OnTickPowerUp()
@@ -51,4 +45,11 @@ void ASPowerUpActor::OnTickPowerUp()
 		// Delete timer in our last tick
 		GetWorldTimerManager().ClearTimer(TimerHandle_LifeSpanExpired);
 	}
+}
+
+void ASPowerUpActor::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& OutLifetimeProps) const
+{
+	Super::GetLifetimeReplicatedProps(OutLifetimeProps);
+
+	DOREPLIFETIME(ASPowerUpActor, bIsPowerUpActive);
 }

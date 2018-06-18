@@ -40,6 +40,9 @@ protected:
 	UFUNCTION()
 	void OnRep_PowerUpActive();
 
+	UFUNCTION(BlueprintImplementableEvent, Category = "PowerUps")
+	void OnPowerUpStateChanged(bool bNewIsActive);
+
 public:
 
 	void ActivatePowerUp();
