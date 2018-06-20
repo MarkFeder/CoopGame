@@ -10,12 +10,17 @@ ASPowerUpActor::ASPowerUpActor()
 	PowerUpInterval = 0.0f;
 	TotalNumberOfTicks = 0;
 
+	bIsPowerUpActive = false;
+
 	SetReplicates(true);
 }
 
-void ASPowerUpActor::ActivatePowerUp()
+void ASPowerUpActor::ActivatePowerUp(AActor* ActivateFor)
 {
-	OnActivated();
+	OnActivated(ActivateFor);
+
+	bIsPowerUpActive = true;
+	OnRep_PowerUpActive();
 
 	if (PowerUpInterval > 0.0f)
 	{
@@ -41,6 +46,9 @@ void ASPowerUpActor::OnTickPowerUp()
 	if (TicksProcessed >= TotalNumberOfTicks)
 	{
 		OnExpired();
+
+		bIsPowerUpActive = false;
+		OnRep_PowerUpActive();
 
 		// Delete timer in our last tick
 		GetWorldTimerManager().ClearTimer(TimerHandle_LifeSpanExpired);

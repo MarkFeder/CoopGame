@@ -45,10 +45,10 @@ protected:
 
 public:
 
-	void ActivatePowerUp();
+	void ActivatePowerUp(AActor* ActivateFor);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "PowerUps")
-	void OnActivated();
+	void OnActivated(AActor* ActivateFor);
 
 	UFUNCTION(BlueprintImplementableEvent, Category = "PowerUps")
 	void OnPowerUpTicked();
